@@ -2,6 +2,7 @@
     <div id="app">
         <main class="main">
             <div class="container">
+                <Main/>
             </div>
         </main>
     </div>
@@ -9,7 +10,11 @@
 
 <script>
 
-    export default {}
+    import Main from "@/components/Main";
+
+    export default {
+        components: {Main}
+    }
 </script>
 
 <style lang="scss">
