@@ -26,7 +26,7 @@
     .grid-item {
         display: flex;
         flex-direction: column;
-        min-width: 200px;
+        max-width: 300px;
         min-height: 300px;
         border-radius: $borderRadius;
         box-shadow: $boxShadow;
