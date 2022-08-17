@@ -13,8 +13,9 @@
 
 <style lang="scss">
     .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
         grid-gap: 20px;
         margin: 0 auto;
     }

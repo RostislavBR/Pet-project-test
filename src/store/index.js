@@ -17,17 +17,20 @@ export default new Vuex.Store({
             status: null,
             code: null,
             isLoading: true,
-        }
+        },
+        defaultItems: [],
     },
     mutations: {
         setTasks(state, payload) {
-            state.taskItems.items = payload.result;
+            state.taskItems.items = payload.result.offers;
+            state.defaultItems = payload.result.offers;
         },
         setCategory(state, payload) {
             state.categoryItems.items = payload.result;
         },
         sortTasks(state, payload) {
-            state.taskItems.items = state.taskItems.items.sort(payload);
+            state.taskItems.items = state.defaultItems;
+            state.taskItems.items = state.taskItems.items.filter(({category}) => category === payload);
         },
     },
     getters: {
