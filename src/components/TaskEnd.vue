@@ -1,10 +1,12 @@
 <template>
-    <p class="task-end">task end</p>
+    <p class="task-end">{{ new Date(dateEnd).toLocaleDateString() }}</p>
 </template>
 
 <script>
+
     export default {
-        name: "TaskEnd"
+        name: "TaskEnd",
+        props: ['dateEnd'],
     }
 </script>
 

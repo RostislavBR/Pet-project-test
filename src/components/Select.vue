@@ -1,11 +1,11 @@
 <template>
     <div class="select-wrapper">
         <p class="select-default">text</p>
-        <options class="options">
+        <option class="options">
             <p class="options-items" v-for="items in 6" :key="items.id">
                 text
             </p>
-        </options>
+        </option>
     </div>
 </template>
 

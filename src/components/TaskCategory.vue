@@ -1,10 +1,11 @@
 <template>
-    <p class="category-text">category</p>
+    <p class="category-text">{{category}}</p>
 </template>
 
 <script>
     export default {
-        name: "TaskCategory"
+        name: "TaskCategory",
+        props: ['category'],
     }
 </script>
 
