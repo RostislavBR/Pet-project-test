@@ -11,16 +11,31 @@ export default new Vuex.Store({
             status: null,
             code: null,
             isLoading: true,
+        },
+        categoryItems: {
+            items: [],
+            status: null,
+            code: null,
+            isLoading: true,
         }
     },
     mutations: {
         setTasks(state, payload) {
             state.taskItems.items = payload.result;
-        }
+        },
+        setCategory(state, payload) {
+            state.categoryItems.items = payload.result;
+        },
+        sortTasks(state, payload) {
+            state.taskItems.items = state.taskItems.items.sort(payload);
+        },
     },
     getters: {
         getTaskItems(state) {
             return state.taskItems.items;
+        },
+        getCategoryItems(state) {
+            return state.categoryItems.items.categories;
         }
     },
     actions: {
@@ -33,6 +48,15 @@ export default new Vuex.Store({
                 .then(response => {
                     context.commit("setTasks", response);
                 });
-        }
+        },
+        getCategory(context) {
+            fetch(`${API_URL.category}`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(response => {
+                   context.commit("setCategory", response)
+                });
+        },
     },
 });
