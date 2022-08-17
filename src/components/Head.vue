@@ -1,7 +1,7 @@
 <template>
     <div class="head-container">
         <HeadTitle/>
-        <Select :category="category"/>
+        <Select :categories="categories"/>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
 
     export default {
         name: "Head",
-        props: ['category'],
+        props: ['categories'],
         components: {Select, HeadTitle}
     }
 </script>
