@@ -1,10 +1,16 @@
 <template>
-    <span class="task-price">10 000</span>
+    <span class="task-price">{{ price | numberFormat }} &#8381;</span>
 </template>
 
 <script>
+    import numberFormat from "@/helpers/numberFormat";
+
     export default {
-        name: "TaskPrice"
+        name: "TaskPrice",
+        props: ['price'],
+        filters: {
+            numberFormat
+        }
     }
 </script>
 

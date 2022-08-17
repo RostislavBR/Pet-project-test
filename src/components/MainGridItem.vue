@@ -1,9 +1,11 @@
 <template>
     <div class="grid-item">
-        <TaskTitle/>
-        <TaskCategory/>
-        <TaskPrice/>
-        <TaskEnd/>
+        <TaskTitle :title="title"/>
+        <TaskCategory :category="category"/>
+        <TaskPrice :price="price"/>
+        <template v-if="dateEnd !== null">
+            <TaskEnd :dateEnd="dateEnd"/>
+        </template>
     </div>
 </template>
 
@@ -15,6 +17,7 @@
 
     export default {
         name: "MainGridItem",
+        props: ['id', 'category', 'dateBegin', 'dateEnd', 'price', 'title'],
         components: {TaskEnd, TaskCategory, TaskPrice, TaskTitle}
     }
 </script>

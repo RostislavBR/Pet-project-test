@@ -1,10 +1,11 @@
 <template>
-    <h2 class="task-title">Task Title</h2>
+    <h2 class="task-title">{{title}}</h2>
 </template>
 
 <script>
     export default {
-        name: "TaskTitle"
+        name: "TaskTitle",
+        props: ['title']
     }
 </script>
 
