@@ -1,8 +1,9 @@
 <template>
     <div class="main-wrapper">
-        <Head/>
+        <Head :category="category"/>
         <MainGrid>
-            <MainGridItem v-for="({id, category, dateBegin, dateEnd, price, title}) in tasks.offers" :key="id" :category="category" :dateBegin="dateBegin"
+            <MainGridItem v-for="({id, category, dateBegin, dateEnd, price, title}) in tasks.offers" :key="id"
+                          :category="category" :dateBegin="dateBegin"
                           :dateEnd="dateEnd" :price="price" :title="title"/>
         </MainGrid>
     </div>
@@ -18,12 +19,13 @@
         name: "Main",
         components: {MainGridItem, MainGrid, Head},
         methods: {
-            ...mapActions(['getTasks']),
+            ...mapActions(['getCategory', 'getTasks']),
         },
         computed: {
-            ...mapGetters({tasks: 'getTaskItems'}),
+            ...mapGetters({category: 'getCategoryItems', tasks: 'getTaskItems',}),
         },
         created() {
+            this.getCategory();
             this.getTasks();
         },
     }
