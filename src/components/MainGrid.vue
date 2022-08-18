@@ -15,8 +15,8 @@
     .grid {
         width: 100%;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         grid-gap: 20px;
-        margin: 0 auto;
     }
 </style>

@@ -9,11 +9,10 @@
 </template>
 
 <script>
-
     import Main from "@/components/Main";
 
     export default {
-        components: {Main}
+        components: {Main},
     }
 </script>
 
@@ -36,13 +35,15 @@
 
     body, html {
         width: 100%;
-        height: 100%;
-        overflow-x: hidden;
+        height: 100vh;
+        overflow: hidden;
         background: $backgroundColor;
     }
 
     .container {
-        width: 1920px;
+        position: relative;
+        width: 100%;
+        height: 100%;
         margin: 0 auto;
         padding: 20px;
     }

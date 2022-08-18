@@ -1,8 +1,9 @@
 <template>
-    <div class="select-wrapper">
-        <p class="select-default" @click="onClickDefaultFilter">{{defaultSort}}</p>
-        <div class="options" @click="onClickFilter">
-            <p class="options-items" v-for="({id, title}) in categories" :key="id" @click="selectOption(title)">
+    <div class="modal-select-wrapper">
+        <p class="modal-select-default" @click="onClickDefaultFilter">{{defaultSort}}</p>
+        <div class="modal-options" @click="onClickFilter">
+            <p class="modal-options-items" v-for="({id, title}) in categories" :key="id"
+               @click="selectCategory(title, id)">
                 {{title}}
             </p>
         </div>
@@ -11,20 +12,19 @@
 
 <script>
     import {gsap} from "gsap";
-    import {mapMutations} from "vuex";
 
     export default {
-        name: "Select",
+        name: "ModalSelect",
         props: ['categories'],
         data() {
             return {
-                defaultSort: 'По умолчанию'
+                defaultSort: 'Введите категорию',
+                categoryId: null,
             }
         },
         methods: {
-            ...mapMutations(['sortTasks']),
             onClickDefaultFilter() {
-                gsap.to('.options', {
+                gsap.to('.modal-options', {
                     duration: .4,
                     delay: .2,
                     opacity: 1,
@@ -32,61 +32,65 @@
                 })
             },
             onClickFilter() {
-                gsap.to('.options', {
+                gsap.to('.modal-options', {
                     duration: .2,
                     delay: .2,
                     opacity: 0,
                     pointerEvents: 'none',
                 });
             },
-            selectOption(title, id) {
-                switch (title, id) {
+            selectCategory(title, id) {
+                switch (title) {
                     case "Аренда персонала":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     case "Аренда рабочих мест":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     case "Бухгалтерские услуги":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     case "Мелкие поручения":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     case "Охрана и детективы":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     case "Поиск работы, услуги рекрутера":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     case "Продвижение, оптимизация, SMM":
                         this.defaultSort = title;
+                        this.categoryId = id;
                         break;
                     default:
-                        console.log('default')
                         break;
                 }
-                this.sortTasks(title);
-            },
-        },
+            }
+        }
     }
 </script>
 
 <style lang="scss">
-    .select-wrapper {
+    .modal-select-wrapper {
         position: relative;
-        min-width: 121.49px;
-        background: $formBackground;
+        max-width: 200px;
         cursor: pointer;
 
-        .select-default {
+        .modal-select-default {
             font-size: $formFontSize;
             text-align: center;
-            color: $greyColor;
+            background: $whiteColor;
             border-radius: $borderRadius;
             border: none;
             box-shadow: $inputShadow;
-            padding: 10px 0;
+            padding: 10px;
 
             &:after {
                 content: '';
@@ -98,29 +102,28 @@
             }
         }
 
-        .options {
+        .modal-options {
             position: absolute;
             top: 40px;
             right: 0;
             width: 100%;
-            background: $formBackground;
+            background: $whiteColor;
             border: none;
             border-radius: $borderRadius;
             box-shadow: $inputShadow;
             z-index: 100;
             opacity: 0;
             pointer-events: none;
-        }
 
-        .options-items {
-            font-size: $formFontSize;
-            text-align: center;
-            color: $greyColor;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(180, 180, 180, 0.1);
+            .modal-options-items {
+                font-size: $formFontSize;
+                text-align: center;
+                padding: 11px 0;
+                border-bottom: 1px solid rgba(180, 180, 180, 0.1);
 
-            &:last-child {
-                border: none;
+                &:last-child {
+                    border: none;
+                }
             }
         }
     }

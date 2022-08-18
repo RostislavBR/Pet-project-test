@@ -1,1 +1,1 @@
-export const API_URL = {tasks: 'http://api.staging.umeu.app', category: 'http://api.staging.umeu.app/test/categories'};
+export const API_URL = {tasks: 'http://api.staging.umeu.app/test/tasks/search?', category: 'http://api.staging.umeu.app/test/categories', addTask: 'http://api.staging.umeu.app/test/task/create'};

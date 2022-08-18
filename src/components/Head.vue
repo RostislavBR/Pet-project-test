@@ -1,6 +1,7 @@
 <template>
     <div class="head-container">
         <HeadTitle/>
+        <OpenModal/>
         <Select :categories="categories"/>
     </div>
 </template>
@@ -8,11 +9,12 @@
 <script>
     import HeadTitle from "@/components/HeadTitle";
     import Select from "@/components/Select";
+    import OpenModal from "@/components/OpenModal";
 
     export default {
         name: "Head",
         props: ['categories'],
-        components: {Select, HeadTitle}
+        components: {OpenModal, Select, HeadTitle}
     }
 </script>
 
