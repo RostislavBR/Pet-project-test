@@ -22,8 +22,8 @@ export default new Vuex.Store({
     },
     mutations: {
         setTasks(state, payload) {
-            state.taskItems.items = payload.result.offers;
-            state.defaultItems = payload.result.offers;
+            state.taskItems.items =  state.taskItems.items.concat(payload.result.offers);
+            state.defaultItems =  state.taskItems.items.concat(payload.result.offers);
         },
         setCategory(state, payload) {
             state.categoryItems.items = payload.result;
@@ -32,6 +32,14 @@ export default new Vuex.Store({
             state.taskItems.items = state.defaultItems;
             state.taskItems.items = state.taskItems.items.filter(({category}) => category === payload);
         },
+        updateTasks(state, items) {
+            state.taskItems.items = items;
+        },
+        syncTasks(state) {
+            state.taskItems = state.taskItems.map((item) => ({
+                taskId: item.id,
+            }))
+        },
     },
     getters: {
         getTaskItems(state) {
@@ -39,12 +47,11 @@ export default new Vuex.Store({
         },
         getCategoryItems(state) {
             return state.categoryItems.items.categories;
-        }
+        },
     },
     actions: {
-        getTasks(context) {
-            fetch(`${API_URL.tasks}/test/tasks/search?pagingCount=5&pagingAfter=0
-`)
+        getTasks(context, payload) {
+            fetch(`${API_URL.tasks}pagingCount=10&pagingAfter=${payload}`)
                 .then(response => {
                     return response.json();
                 })
@@ -58,8 +65,20 @@ export default new Vuex.Store({
                     return response.json();
                 })
                 .then(response => {
-                   context.commit("setCategory", response)
+                    context.commit("setCategory", response)
                 });
         },
+        addTask(context, task) {
+            fetch(`${API_URL.addTask}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(task)
+            })
+                .then(() => {
+                    context.dispatch("getTasks");
+                });
+        }
     },
 });

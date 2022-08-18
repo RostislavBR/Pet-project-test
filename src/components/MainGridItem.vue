@@ -27,7 +27,7 @@
         display: flex;
         flex-direction: column;
         flex-basis: 27%;
-        min-height: 300px;
+        min-height: 400px;
         border-radius: $borderRadius;
         box-shadow: $boxShadow;
         padding: 20px;
